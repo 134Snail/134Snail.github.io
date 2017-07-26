@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="div{     padding:20px;   }    *{    line-height:42px;    font-family:&apos;楷体&apos;;    font-size:16px;   }   h3,h1,h2{    color:yellowgreen;    font:30px &apos;隶书&apos;;   }   u{     color:red;    font-size:14px;    l">
+<meta name="description" content="div{     padding:20px;   }    *{     font-family:&apos;楷体&apos;;    font-size:16px;   }   h3,h1,h2{    color:yellowgreen;    font:30px &apos;隶书&apos;;   }   u{     color:red;    font-size:14px;    }   ol{    font-weigh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ajax补充">
 <meta property="og:url" content="http://yoursite.com/2016/07/26/ajax补充/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="div{     padding:20px;   }    *{    line-height:42px;    font-family:&apos;楷体&apos;;    font-size:16px;   }   h3,h1,h2{    color:yellowgreen;    font:30px &apos;隶书&apos;;   }   u{     color:red;    font-size:14px;    l">
+<meta property="og:description" content="div{     padding:20px;   }    *{     font-family:&apos;楷体&apos;;    font-size:16px;   }   h3,h1,h2{    color:yellowgreen;    font:30px &apos;隶书&apos;;   }   u{     color:red;    font-size:14px;    }   ol{    font-weigh">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-26T08:56:05.838Z">
+<meta property="og:updated_time" content="2017-07-26T08:59:05.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ajax补充">
-<meta name="twitter:description" content="div{     padding:20px;   }    *{    line-height:42px;    font-family:&apos;楷体&apos;;    font-size:16px;   }   h3,h1,h2{    color:yellowgreen;    font:30px &apos;隶书&apos;;   }   u{     color:red;    font-size:14px;    l">
+<meta name="twitter:description" content="div{     padding:20px;   }    *{     font-family:&apos;楷体&apos;;    font-size:16px;   }   h3,h1,h2{    color:yellowgreen;    font:30px &apos;隶书&apos;;   }   u{     color:red;    font-size:14px;    }   ol{    font-weigh">
 
 
 
@@ -356,7 +356,7 @@
   }
 
   *{
-   line-height:42px;
+
    font-family:'楷体';
    font-size:16px;
   }
@@ -368,15 +368,12 @@
 
    color:red;
    font-size:14px;
-   line-height:24px;
+
   }
   ol{
    font-weight:900; 
   }
-  ul{
-  font-size:8em;
 
-  }
 
 </style>
 
@@ -393,14 +390,12 @@
 <li>请求头：</li>
 <li>请求主体：</li>
 </ul>
-<p>###响应/响应报文</p>
-<ul>
+<h3 id="响应-响应报文"><a href="#响应-响应报文" class="headerlink" title="响应/响应报文"></a>响应/响应报文</h3><ul>
 <li>状态行；协议版本号,状态码，状态信息；</li>
 <li>响应头；</li>
 <li>响应主体；</li>
 </ul>
-<p>###ajax（Asynchronous Javascript And XML）</p>
-<ul>
+<h3 id="ajax（Asynchronous-Javascript-And-XML）"><a href="#ajax（Asynchronous-Javascript-And-XML）" class="headerlink" title="ajax（Asynchronous Javascript And XML）"></a>ajax（Asynchronous Javascript And XML）</h3><ul>
 <li>ajax不是一门新的语言，而是对现有技术的综合利用；</li>
 <li><p>本质：实在http协议的基础上以异步的方式与服务器进行通信；</p>
 </li>
@@ -423,8 +418,7 @@
 <pre><code>- post方式：
 
     <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">///创异步对象；</div><div class="line">var obj = new XMLHttpRequest();</div><div class="line">////设请行；</div><div class="line">obj.open(&apos;post&apos;,&apos;1.php&apos;);</div><div class="line"></div><div class="line">/////设请求头；</div><div class="line">obj.setRequestHeader(&apos;Content-Type&apos;,&apos;application/x-www-form-urlencoded&apos;);</div><div class="line"></div><div class="line">//回调函数；</div><div class="line">obj.onload = function()&#123;</div><div class="line">    console.log(obj.responseText);</div><div class="line">&#125;</div><div class="line">///请求主体；</div><div class="line">obj.send(&apos;name=张三&amp;age=28&amp;XB=男&apos;);</div></pre></td></tr></table></figure>
-</code></pre><p>###onreadystatechange</p>
-<ul>
+</code></pre><h3 id="onreadystatechange"><a href="#onreadystatechange" class="headerlink" title="onreadystatechange"></a>onreadystatechange</h3><ul>
 <li>是javascript的事件的一种；</li>
 <li>作用：监听XMLHttpRequest的状态；</li>
 </ul>
@@ -442,8 +436,7 @@
 <li>eg:（检测XMLHttpRequest,并设置给选中的标签中设置内容）</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">xhr.onreadystatechange = function()&#123;</div><div class="line">    if(xhr.readyState == 4 &amp;&amp; xhr.status == 200)&#123;</div><div class="line">      var result = document.querySelector(&apos;.result&apos;);</div><div class="line">      result.innerHTML = xhr.responseText;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">xhr.readyState = 4时，DONE响应完成；</div></pre></td></tr></table></figure>
-<p>###DOMContentLoad和window.onload：</p>
-<ul>
+<h3 id="DOMContentLoad和window-onload："><a href="#DOMContentLoad和window-onload：" class="headerlink" title="DOMContentLoad和window.onload："></a>DOMContentLoad和window.onload：</h3><ul>
 <li>两者都是原生js的属性；</li>
 <li>区别：DOMContentLoad事件是在DOM加载完毕，页面内容（如图片加载完毕之前执行。），与jquery中的入口函数相同。而window.onload会在页面资料全部加载完毕后才会执行。<br><u>总结：DOMContentLoad是在DOM渲染完毕，页面DOM元素可使用，触发，window.onload是在DOM渲染完毕，并且所有外部资源也加载完毕才触发；</u></li>
 </ul>
@@ -469,8 +462,7 @@
 </ul>
 <p>eg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">发起HTTP GET请求获取指定URL的内容</div><div class="line">如果响应成功到达，则传入responseText给回调函数</div><div class="line">如果响应在timeout时间内没有到达，则中止请求</div><div class="line">浏览器可能会在abort()后出啊发readystatechange</div><div class="line">如果部分请求结果到达，甚至可能设置status属性</div><div class="line">所有需要设置一个标记，当部分且超时的响应到达时不会调用回调函数</div><div class="line">如果使用load(当请求完成时触发)事件就没有这个风险</div><div class="line">*/</div><div class="line">function(url,timeout,callback)&#123;</div><div class="line">    var request = new XMLHttpRequest();</div><div class="line">    var time = false;//是否超时</div><div class="line">    var timer = setTimeout(function()&#123;</div><div class="line">        timeout = true;</div><div class="line">        request.abort();//请求中止</div><div class="line">    &#125;,timeout);</div><div class="line">    request.open(&quot;GET&quot;,url);</div><div class="line">    request.onreadystatechange = function()&#123;</div><div class="line">        if(request.readyState !==4) continue;//忽略未完成的请求</div><div class="line">        if(timeout) return;//忽略中止请求</div><div class="line">        clearTimeout(timer);//取消等待的超时</div><div class="line">        if(request.status === 200)</div><div class="line">            callback(request.responseText);</div><div class="line">    &#125;</div><div class="line">    request.send(null);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><u>jquery中的调用$.ajax和$.get,$.post都会创建一个加强版的异步对象XMLHtppReqest</u></p>
-<p>###请求方式：</p>
-<ul>
+<h3 id="请求方式："><a href="#请求方式：" class="headerlink" title="请求方式："></a>请求方式：</h3><ul>
 <li>get</li>
 <li>post</li>
 <li>put</li>
@@ -632,7 +624,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP协议："><span class="nav-number">1.</span> <span class="nav-text">HTTP协议：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XMLHttpRequest"><span class="nav-number">2.</span> <span class="nav-text">XMLHttpRequest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#入口函数；"><span class="nav-number">3.</span> <span class="nav-text">入口函数；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM文档加载步骤："><span class="nav-number">4.</span> <span class="nav-text">DOM文档加载步骤：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#终止ajax请求的方法；"><span class="nav-number">5.</span> <span class="nav-text">终止ajax请求的方法；</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP协议："><span class="nav-number">1.</span> <span class="nav-text">HTTP协议：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应-响应报文"><span class="nav-number">2.</span> <span class="nav-text">响应/响应报文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ajax（Asynchronous-Javascript-And-XML）"><span class="nav-number">3.</span> <span class="nav-text">ajax（Asynchronous Javascript And XML）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XMLHttpRequest"><span class="nav-number">4.</span> <span class="nav-text">XMLHttpRequest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onreadystatechange"><span class="nav-number">5.</span> <span class="nav-text">onreadystatechange</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOMContentLoad和window-onload："><span class="nav-number">6.</span> <span class="nav-text">DOMContentLoad和window.onload：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#入口函数；"><span class="nav-number">7.</span> <span class="nav-text">入口函数；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM文档加载步骤："><span class="nav-number">8.</span> <span class="nav-text">DOM文档加载步骤：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#终止ajax请求的方法；"><span class="nav-number">9.</span> <span class="nav-text">终止ajax请求的方法；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求方式："><span class="nav-number">10.</span> <span class="nav-text">请求方式：</span></a></li></ol></div>
             
 
           </div>
