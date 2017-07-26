@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="div{     padding:20px;   }    *{     font-family:&apos;楷体&apos;;    font-size:16px;   }   h3,h1,h2{    color:yellowgreen;    font:30px &apos;隶书&apos;;   }   u{     color:red;    font-size:14px;    }   ol{    font-weigh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node.js">
+<meta property="og:url" content="http://yoursite.com/2017/07/26/node-js/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="div{     padding:20px;   }    *{     font-family:&apos;楷体&apos;;    font-size:16px;   }   h3,h1,h2{    color:yellowgreen;    font:30px &apos;隶书&apos;;   }   u{     color:red;    font-size:14px;    }   ol{    font-weigh">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-07-26T11:34:07.519Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node.js">
+<meta name="twitter:description" content="div{     padding:20px;   }    *{     font-family:&apos;楷体&apos;;    font-size:16px;   }   h3,h1,h2{    color:yellowgreen;    font:30px &apos;隶书&apos;;   }   u{     color:red;    font-size:14px;    }   ol{    font-weigh">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/26/node-js/"/>
+
+
+
+
+
+  <title>node.js | Hexo</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/26/node-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">node.js</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-26T19:29:55+08:00">
+                2017-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <style>
+ div{
+    padding:20px;
+  }
+
+  *{
+
+   font-family:'楷体';
+   font-size:16px;
+  }
+  h3,h1,h2{
+   color:yellowgreen;
+   font:30px '隶书';
+  }
+  u{
+
+   color:red;
+   font-size:14px;
+
+  }
+  ol{
+   font-weight:900; 
+  }
+
+ ul>li{
+   font:px '楷体';
+   line-height:32px;
+
+ }
+
+</style>
+
+<h3 id="npm（包管理工具）"><a href="#npm（包管理工具）" class="headerlink" title="npm（包管理工具）"></a>npm（包管理工具）</h3><ul>
+<li>npm init -y  初始化，生成一个包管理文件（package.json:用于依赖文件的赋值）;</li>
+<li>npm install  报名@版本号（版本号可选） –save或者（–save/dev）   ///install 可以简写成i<ul>
+<li>–save 表示将包安装到部署依赖（开发和项目上线都需要依赖的包），可以简写成 -S</li>
+<li>–save-dev表示安装到开发依赖（只在项目开发中依赖），可以简写成 -D</li>
+</ul>
+</li>
+<li><p>npm uninstall 包名 –save/–save-dev //删除包,同时删除package.json中的记录；</p>
+</li>
+<li><p>想要通过package.json来自动安装包 ，在其所对的文件夹中执行对应指令：npm install</p>
+</li>
+</ul>
+<h3 id="EMAscript"><a href="#EMAscript" class="headerlink" title="EMAscript"></a>EMAscript</h3><ul>
+<li>只规定了如何进行分支判断，如何定义变量，如何定义方法；</li>
+<li>只是一个规范，不是编程语言；</li>
+</ul>
+<h3 id="ES6新语法特性；"><a href="#ES6新语法特性；" class="headerlink" title="ES6新语法特性；"></a>ES6新语法特性；</h3><h3 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a>node.js</h3><ul>
+<li>运行环境:REPL</li>
+<li><p>只能运行js自带的原生语法（alert不能识别）；</p>
+</li>
+<li><p>readFile(‘文件路径’，’文件路径’,function(error,data){</p>
+<p> })  ////当文件读取成功是error为null;</p>
+</li>
+<li><p>函数定义</p>
+</li>
+<li>前端：箭头函数：（）=&gt;{}  ///():参数列表；{}：函数体；<ul>
+<li>箭头函数中的this始终指向它外部作用域的的this;</li>
+</ul>
+</li>
+</ul>
+<h1 id="核心模块（API模块）"><a href="#核心模块（API模块）" class="headerlink" title="核心模块（API模块）"></a>核心模块（API模块）</h1><h3 id="fs"><a href="#fs" class="headerlink" title="fs"></a>fs</h3><ul>
+<li>文件读取模块；</li>
+<li>调用：var fs = require(‘fs’);</li>
+<li>文件读取： fs.readFile(),有三个参数，<ul>
+<li>第一个参数为：path，指定要读取的的文件路径；</li>
+<li>options（可选），指定文件编码；</li>
+</ul>
+</li>
+</ul>
+<p>###文件的写入和追加；</p>
+<ul>
+<li>需调用node的核心模块，require（’fs’）;</li>
+<li></li>
+</ul>
+<ul>
+<li>在写入的字符串中加/n表示换行；</li>
+<li>文件追加时如果，要追加的文件不存在不会报错，会先创建文件在追加；</li>
+<li>文件写入时如果要写入的文件不存在会直接报错，</li>
+</ul>
+<p>###fs模块中路径</p>
+<ul>
+<li><p><em> </em> dirname ():获取当前代码所在文件的路径 ( <em> </em>之间不能有空格)；</p>
+</li>
+<li><p>在代码中使用./ ：命令窗口打开的路径</p>
+</li>
+</ul>
+<p>###页面中静态资源路径</p>
+<ul>
+<li>页面中静态资源的路径属于二次请求，浏览器会进行拼接处理后；</li>
+<li>不能以./或者../开始</li>
+</ul>
+<p>###环境变量 path</p>
+<ul>
+<li>可以让我们通过命令行快速启动应用；</li>
+<li>path变量查找规则，现在当前目录中查找，如果当前目录里面没有，就去系统环境变量path变量中依次查找对应的文件夹，如果里面也有对应的exe程序则运行，否则直接报错；</li>
+</ul>
+<p>###小点集合</p>
+<ul>
+<li>谷歌2008年创造出了世界解析js最快的引擎， chrome  v8；</li>
+<li><p>javascript是单线程语言，javascript语言全部运行在主线程上；</p>
+</li>
+<li><p>多线程：程序员能主动开启子线程的语言就叫做多线程语言；</p>
+</li>
+<li><p>异步方式，例如异步文件读写不是主程序来完成的，而是主程序开启的子程序来完成的，主程序会继续进行后续的操作；</p>
+</li>
+<li><p>只有用户模块，是通过路径+标识符来引用，其他模块都是直接通过标识符引用； </p>
+</li>
+</ul>
+<ul>
+<li>nodejs中require加载模块，优先从缓存中加载<ul>
+<li>好处：提高程序的运行速度；</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>node的模块化基于comenjs，</li>
+<li>commonjs是同步加载的规范，不适用与浏览器端，因为浏览器端不是本地加载的（客户端采用的是本地加载）</li>
+<li><p>AMD,CMD(规范的区别)；</p>
+</li>
+<li><p>需要对seo友好的页面区域一般采用服务器端渲染，反之采用客户端渲染；</p>
+</li>
+<li><p>nodejs中回调函数的第一个参数都是error对象；</p>
+</li>
+<li><p>rep.end();  ////()中可以放字符串,二进制；</p>
+</li>
+<li><p>const 用来定义常量，（例如模块对象）；</p>
+</li>
+<li><p>对象静态资源的请求后台必须通过fs模块来读取；</p>
+</li>
+<li><p>获取请求的方式：req.method;</p>
+</li>
+</ul>
+<p>###第三方模块，核心模块的调用：</p>
+<ul>
+<li>第三方模块调用在第三方package.json中查看main的路径指向的是哪个文件，就引用哪个文件；</li>
+<li>在自己的package.json中查看安装的第三方模块的名字，直接require该名字；</li>
+</ul>
+<p>###node中实现模块化主要是通过，module ,require ,exports  </p>
+<h3 id="项目构建"><a href="#项目构建" class="headerlink" title="项目构建"></a>项目构建</h3><ul>
+<li>入口程序:一般放在根目录；</li>
+</ul>
+<p>###转译符</p>
+<ul>
+<li>/</li>
+</ul>
+<p>###后台的mvc模式</p>
+<ul>
+<li>c:业务逻辑</li>
+<li>m:数据的增删改查；</li>
+<li>v:前端页面；</li>
+</ul>
+<p>是针对整个项目而言的；而前端的mvc只针对页面而言；</p>
+<p>###网页上的请求</p>
+<ul>
+<li>分为两种同步和异步，</li>
+<li>同步请求会直接渲染在页面上，</li>
+<li>异步不会，如ajax请求，ajax的回调函数会先获取数据，进行处理；</li>
+</ul>
+<p>###向请求的客户端发送响应头<br>response.writeHead(statusCode, [reasonPhrase], {键：值})<br>eg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">response.writeHead(200, &#123;</div><div class="line">  &apos;Content-Length&apos;: body.length,</div><div class="line">  &apos;Content-Type&apos;: &apos;text/plain; charset=utf-8&apos;   ////规定响应文件的类型；</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>###获取前台请求数据；</p>
+<h3 id="nodejs中的事件绑定："><a href="#nodejs中的事件绑定：" class="headerlink" title="nodejs中的事件绑定："></a>nodejs中的事件绑定：</h3><ul>
+<li>addListener </li>
+<li>on(‘事件类型’,function(){});</li>
+</ul>
+<p><u>不能用addEventListener</u></p>
+<p>###浏览器主动发起的请求都是get，</p>
+<p>###ES6javascript新语法特性</p>
+<ul>
+<li>结构赋值</li>
+<li>模板字符串；</li>
+<li><p>array.some(function(val ,index){</p>
+<p>  return true ///当执行该语句时会终止循环；</p>
+</li>
+</ul>
+<pre><code>})  ////遍历数组，找到满足要求项目，然后return true终止循环；
+</code></pre><p>###核心模块url</p>
+<ul>
+<li>作用：可以通过它来解析获取获取客户端每次请求的ulr地址；</li>
+<li></li>
+</ul>
+<p>###const let</p>
+<ul>
+<li>let:用它定义的变量不能预解析；同时会产生块级作用域({}可以分割作用域)；</li>
+<li>const 定义常量，定义之后不能进行更改，同时也会产生块级作用域；</li>
+<li></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/26/ajax补充/" rel="next" title="ajax补充">
+                <i class="fa fa-chevron-left"></i> ajax补充
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#npm（包管理工具）"><span class="nav-number">1.</span> <span class="nav-text">npm（包管理工具）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EMAscript"><span class="nav-number">2.</span> <span class="nav-text">EMAscript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6新语法特性；"><span class="nav-number">3.</span> <span class="nav-text">ES6新语法特性；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#node-js"><span class="nav-number">4.</span> <span class="nav-text">node.js</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#核心模块（API模块）"><span class="nav-number"></span> <span class="nav-text">核心模块（API模块）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fs"><span class="nav-number">1.</span> <span class="nav-text">fs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目构建"><span class="nav-number">2.</span> <span class="nav-text">项目构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nodejs中的事件绑定："><span class="nav-number">3.</span> <span class="nav-text">nodejs中的事件绑定：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
