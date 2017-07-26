@@ -400,9 +400,87 @@
 <li>只规定了如何进行分支判断，如何定义变量，如何定义方法；</li>
 <li>只是一个规范，不是编程语言；</li>
 </ul>
-<h3 id="ES6新语法特性；"><a href="#ES6新语法特性；" class="headerlink" title="ES6新语法特性；"></a>ES6新语法特性；</h3><h2 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a>node.js</h2><p><img src="../images/2bf795c22c98ba439d480b5b43d13feb.png" alt=""></p>
+<h3 id="ES6新语法特性；"><a href="#ES6新语法特性；" class="headerlink" title="ES6新语法特性；"></a>ES6新语法特性；</h3><h1 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a>node.js</h1><h2 id="相关定义："><a href="#相关定义：" class="headerlink" title="相关定义："></a>相关定义：</h2><ul>
+<li>运行环境：基于Chrome v8引擎的javascript (REPL)</li>
+<li>使用了事件驱动、非阻塞式I/O的模型，使其轻量而又高效；<ul>
+<li>事件驱动： 当触发某个事件的时候，执行事件中指定的代码；</li>
+<li>非阻塞式I/O的模型：采用非阻塞的操作，能够提高处理效率</li>
+</ul>
+</li>
+<li><u>总结：node.js就是一个javascript的服务端运行唤醒，为javascript提供了服务端编程能力</u></li>
+</ul>
+<h2 id="模块的引入"><a href="#模块的引入" class="headerlink" title="模块的引入"></a>模块的引入</h2><ul>
+<li>除过自定义模块引入都使用：var 变量名 = require(‘模块名’);<br>////注意模块名是使用npm安装时用的名字，也是package.json中的名字；</li>
+<li>自定义模块的引入：var 变量名 = require(‘模块路径’);<br>/// 自定义模块引入需要写模块路径；</li>
+</ul>
+<h2 id="核心模块"><a href="#核心模块" class="headerlink" title="核心模块"></a>核心模块</h2><h3 id="fs"><a href="#fs" class="headerlink" title="fs"></a>fs</h3><ul>
+<li>作用：操作文件</li>
+<li>导入：var fs = require(‘fs’); ///导入fs核心模块；</li>
+<li><p>读取文件内容：fs.readFile(‘path’,[字符编码],callback);</p>
 <ul>
-<li>运行环境:REPL</li>
+<li>第一个参数为要读取的文件路径；</li>
+<li>第二个参数为字符编码可选；</li>
+<li>第三个参数为回调函数：回调函数有两个参数:（error,data） ///当文件读取完成后执行回调函数；如果读取失败error是一个对象,data为undefined ,反之error为null,data为读取的内容；</li>
+<li><p>eg</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fs.readFile(&apos;./files/1.txt&apos;, &apos;utf-8&apos;, (err, dataStr) =&gt; &#123;</div><div class="line">  if (err) return console.log(err.message);</div><div class="line">  console.log(dataStr);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>文件的写入：fs.writeFile(path,content,字符编码/可选,callback);</p>
+<ul>
+<li>四个参数：</li>
+<li><p>callback：当文件写入完成后执行，参数只有一个error，如果写入失败error是一个对象，反之error为null</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fs.writeFile(&apos;./files/2.txt&apos;, &apos;QQQ&apos;, (err) =&gt; &#123;</div><div class="line">     if (err) throw err;</div><div class="line">     console.log(&apos;写入OK&apos;);</div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>追加内容：fs.appendFile(path,content,字符编码/可选,callback);</p>
+<ul>
+<li>参数也有四个：</li>
+<li>callback在文件写入完成后执行；参数只有一个，error同writeFile()一样；<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fs.appendFile(&apos;./files/3.html&apos;, &apos;&lt;h1&gt;首页&lt;/h1&gt;&apos;, (err) =&gt; &#123;</div><div class="line">    if (err) throw err;</div><div class="line">    console.log(&apos;OK&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p><u>注意：使用者两种写入的方法写入内容时，如果要追加内容的文件不存在，不会报错</u></p>
+</li>
+<li><p>模块路径问题：<br>使用fs模块操作文件时：./的含义并不是当前文件路径；而是打开命令行的路径；所以如果使用./会从命令行所在的目录开始查找；</p>
+</li>
+</ul>
+</li>
+<li>为解决如上./路径问题,node中提供了一个关键字 ：_<em>dirname  //注意是两个 </em> ;</li>
+</ul>
+<p><u>在使用fs模块时，涉及到路径拼接时都要使用__dirname </u></p>
+<h3 id="http模块；"><a href="#http模块；" class="headerlink" title="http模块；"></a>http模块；</h3><ul>
+<li>作用：创建一个web服务器；</li>
+<li>导入：var http = require(‘http’);</li>
+<li>eg：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">var http = require(&apos;http&apos;);</div><div class="line"></div><div class="line">// 2. 创建一个Web服务器</div><div class="line">var server = http.createServer();</div><div class="line"></div><div class="line">// 3. 先指定服务器要运行的端口号，再启动服务器</div><div class="line">server.listen(3000, () =&gt; &#123;</div><div class="line">  // 当服务器启动Ok之后，会调用回调函数</div><div class="line">  console.log(&apos;Server running at http://127.0.0.1:3000&apos;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 4. 监听客户端的请求，并处理请求，最后把处理的结果通过网络返回给客户端</div><div class="line"></div><div class="line">// server.on(&apos;request&apos;) //为服务器绑定请求事件，每当有新的客户端请求我们服务器的时候，都会触发这个事件</div><div class="line">// req 是 request 的缩写：每当有请求过来，都能拿到这次请求的 Request 对象；通过 request 对象，能够拿到客户端提交过来的数据、报文头、报文体；</div><div class="line">// res 是 response 的缩写：服务器处理完这次请求之后，可以通过 response 对象，把处理的结果返回给浏览器</div><div class="line"></div><div class="line">server.on(&apos;request&apos;, (req, res) =&gt; &#123;</div><div class="line">  console.log(&apos;有新的请求过来了！！！&apos;);</div><div class="line">    // 通过 response 对象的 write 方法，向客户端写入数据</div><div class="line">  res.write(&apos;OK&apos;);</div><div class="line">  res.write(&apos;123&apos;);</div><div class="line">  res.write(&apos;456&apos;);</div><div class="line">  ///写入完成需要调用res的end()方法告诉服务器已经发送完毕，客户端可以显示了；</div><div class="line">  res.end();</div></pre></td></tr></table></figure>
+<ul>
+<li>res.end();<ul>
+<li>如果一次就将将数据发送完了，也可以直接将响应的内容作为该方法的参数返回；</li>
+<li>该方法的参数只能是字符串；</li>
+</ul>
+</li>
+<li><p>res.writeHeader(); 写入响应头：</p>
+<ul>
+<li><p>格式：</p>
+<blockquote>
+<p>response.writeHead(statusCode, [reasonPhrase], {键：值})<br>eg:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">response.writeHead(200, &#123;</div><div class="line">    &apos;Content-Length&apos;: body.length,</div><div class="line">    &apos;Content-Type&apos;: &apos;text/plain; charset=utf-8&apos;   ////规定响应文件的类型；</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>作用：解决中文乱码问题；</p>
+</li>
+<li>从定向</li>
+</ul>
+</li>
+</ul>
+<h3 id="node中Javascript"><a href="#node中Javascript" class="headerlink" title="node中Javascript"></a>node中Javascript</h3><ul>
+<li><p>组成：ECMAscript+核心API+其他第三方API</p>
+</li>
+<li><p>运行环境:REPL</p>
+</li>
 <li><p>只能运行js自带的原生语法（alert不能识别）；</p>
 </li>
 <li><p>readFile(‘文件路径’，’文件路径’,function(error,data){</p>
@@ -415,7 +493,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="核心模块（API模块）"><a href="#核心模块（API模块）" class="headerlink" title="核心模块（API模块）"></a>核心模块（API模块）</h1><h3 id="fs"><a href="#fs" class="headerlink" title="fs"></a>fs</h3><ul>
+<h1 id="核心模块（API模块）"><a href="#核心模块（API模块）" class="headerlink" title="核心模块（API模块）"></a>核心模块（API模块）</h1><h3 id="fs-1"><a href="#fs-1" class="headerlink" title="fs"></a>fs</h3><ul>
 <li>文件读取模块；</li>
 <li>调用：var fs = require(‘fs’);</li>
 <li>文件读取： fs.readFile(),有三个参数，<ul>
@@ -507,7 +585,7 @@
 <li>同步请求会直接渲染在页面上，</li>
 <li>异步不会，如ajax请求，ajax的回调函数会先获取数据，进行处理；</li>
 </ul>
-<p>###向请求的客户端发送响应头<br>response.writeHead(statusCode, [reasonPhrase], {键：值})<br>eg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">response.writeHead(200, &#123;</div><div class="line">  &apos;Content-Length&apos;: body.length,</div><div class="line">  &apos;Content-Type&apos;: &apos;text/plain; charset=utf-8&apos;   ////规定响应文件的类型；</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>###向请求的客户端发送响应头</p>
 <p>###获取前台请求数据；</p>
 <h3 id="nodejs中的事件绑定："><a href="#nodejs中的事件绑定：" class="headerlink" title="nodejs中的事件绑定："></a>nodejs中的事件绑定：</h3><ul>
 <li>addListener</li>
