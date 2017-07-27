@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="随笔心得">
 <meta property="og:description" content="u{    color:red;   }">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-27T07:20:45.199Z">
+<meta property="og:updated_time" content="2017-07-27T08:27:51.777Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="node.js">
 <meta name="twitter:description" content="u{    color:red;   }">
@@ -425,7 +425,7 @@
 <li>第二个参数为字符编码可选；</li>
 <li>第三个参数为回调函数：回调函数有两个参数:（error,data） ///当文件读取完成后执行回调函数；如果读取失败error是一个对象,data为undefined ,反之error为null,data为读取的内容；</li>
 <li><p>eg</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fs.readFile(&apos;./files/1.txt&apos;, &apos;utf-8&apos;, (err, dataStr) =&gt; &#123;</div><div class="line">  if (err) return console.log(err.message);</div><div class="line">  console.log(dataStr);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fs.readFile(<span class="string">'./files/1.txt'</span>, <span class="string">'utf-8'</span>, (err, dataStr) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (err) <span class="keyword">return</span> <span class="built_in">console</span>.log(err.message);</div><div class="line">  <span class="built_in">console</span>.log(dataStr);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -433,14 +433,14 @@
 <ul>
 <li>四个参数：</li>
 <li><p>callback：当文件写入完成后执行，参数只有一个error，如果写入失败error是一个对象，反之error为null</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fs.writeFile(&apos;./files/2.txt&apos;, &apos;QQQ&apos;, (err) =&gt; &#123;</div><div class="line">     if (err) throw err;</div><div class="line">     console.log(&apos;写入OK&apos;);</div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fs.writeFile(<span class="string">'./files/2.txt'</span>, <span class="string">'QQQ'</span>, (err) =&gt; &#123;</div><div class="line">     <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line">     <span class="built_in">console</span>.log(<span class="string">'写入OK'</span>);</div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 <li><p>追加内容：fs.appendFile(path,content,字符编码/可选,callback);</p>
 <ul>
 <li>参数也有四个：</li>
-<li>callback在文件写入完成后执行；参数只有一个，error同writeFile()一样；<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fs.appendFile(&apos;./files/3.html&apos;, &apos;&lt;h1&gt;首页&lt;/h1&gt;&apos;, (err) =&gt; &#123;</div><div class="line">    if (err) throw err;</div><div class="line">    console.log(&apos;OK&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<li>callback在文件写入完成后执行；参数只有一个，error同writeFile()一样；<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fs.appendFile(<span class="string">'./files/3.html'</span>, <span class="string">'&lt;h1&gt;首页&lt;/h1&gt;'</span>, (err) =&gt; &#123;</div><div class="line">    <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'OK'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <ul>
