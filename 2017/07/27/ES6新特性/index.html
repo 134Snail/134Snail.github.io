@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ES6新特性," />
 
 
 
@@ -93,13 +93,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="随笔心得">
-<meta property="og:url" content="http://yoursite.com/archives/2016/06/index.html">
+<meta name="description" content="u{  color:red;}h1&amp;gt;a:hover{  transition:all 1s;  transform:translateX(40px);}">
+<meta name="keywords" content="ES6新特性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6新特性">
+<meta property="og:url" content="http://yoursite.com/2017/07/27/ES6新特性/index.html">
 <meta property="og:site_name" content="随笔心得">
+<meta property="og:description" content="u{  color:red;}h1&amp;gt;a:hover{  transition:all 1s;  transform:translateX(40px);}">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-07-27T08:13:10.665Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="随笔心得">
+<meta name="twitter:title" content="ES6新特性">
+<meta name="twitter:description" content="u{  color:red;}h1&amp;gt;a:hover{  transition:all 1s;  transform:translateX(40px);}">
 
 
 
@@ -127,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2016/06/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/27/ES6新特性/"/>
 
 
 
 
 
-  <title>归档 | 随笔心得</title>
+  <title>ES6新特性 | 随笔心得</title>
   
 
 
@@ -158,7 +163,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,66 +277,198 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 4 篇日志。 继续努力。
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/ES6新特性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="倚栏听风语">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img.jsqq.net/uploads/allimg/141105/1_141105191950_13.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="随笔心得">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ES6新特性</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-27T15:37:46+08:00">
+                2017-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">ES6</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <p><style><br>u{<br>  color:red;<br>}<br>h1&gt;a:hover{<br>  transition:all 1s;<br>  transform:translateX(40px);<br>}<br></style><br><a id="more"></a></p>
+<h3 id="十大新特性"><a href="#十大新特性" class="headerlink" title="十大新特性"></a>十大新特性</h3><ul>
+<li><p>默认参数：</p>
+</li>
+<li><p>模板表达式: 字符串拼接的一种简洁好用的方法</p>
+<blockquote>
+<p>${} :用来表示变量：<br>eg:<br> var name = ‘Your name is ${first} ${last}’</p>
+</blockquote>
+</li>
+<li><p>解构赋值：</p>
+<ul>
+<li>定义：允许你使用类似数组或对象字面量的语法将数组和对象的属性赋给各种变量</li>
+<li>语法：[ variable1, variable2, …, variableN ] = array;<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">这将为variable1到variableN的变量赋予数组中相应元素项的值。如果你想在赋值的同时声明变量，可在赋值语句前加入var、let或const关键字</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>eg:<br>  1.</p>
+<pre><code>var first = someArray[0];
+var second = someArray[1];
+var third = someArray[2];
+等价于：
+var [first, second, third] = someArray;／／／解构赋值写法；
+</code></pre><p>  2.var [ variable1, variable2, …, variableN ] = array;</p>
+<pre><code>let [ variable1, variable2, ..., variableN ] = array;
+const [ variable1, variable2, ..., variableN ] = array;
+</code></pre></blockquote>
+</li>
+</ul>
+<p>-</p>
+
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ES6新特性/" rel="tag"># ES6新特性</a>
+          
         </div>
       
+
+      
+      
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/26/node-js/" rel="next" title="node.js">
+                <i class="fa fa-chevron-left"></i> node.js
+              </a>
+            
+          </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          <span class="post-nav-divider"></span>
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/06/01/ajax补充/" itemprop="url">
-              
-                <span itemprop="name">ajax补充</span>
-              
-            </a>
-        
-      </h2>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-06-01T23:47:44+08:00"
-              content="2016-06-01" >
-          06-01
-        </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -339,6 +476,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -359,8 +500,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://img.jsqq.net/uploads/allimg/141105/1_141105191950_13.jpg"
@@ -422,6 +572,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#十大新特性"><span class="nav-number">1.</span> <span class="nav-text">十大新特性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -542,11 +708,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
 
 
   
