@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="随笔心得">
 <meta property="og:description" content="u{  color:red;}h1&amp;gt;a:hover{  transition:all 1s;  transform:translateX(40px);}">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-27T08:26:34.513Z">
+<meta property="og:updated_time" content="2017-07-27T09:17:47.751Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6新特性">
 <meta name="twitter:description" content="u{  color:red;}h1&amp;gt;a:hover{  transition:all 1s;  transform:translateX(40px);}">
@@ -377,11 +377,16 @@
 <h3 id="十大新特性"><a href="#十大新特性" class="headerlink" title="十大新特性"></a>十大新特性</h3><ul>
 <li><p>默认参数：</p>
 </li>
-<li><p>模板表达式: 字符串拼接的一种简洁好用的方法</p>
-<blockquote>
-<p>${} :用来表示变量：<br>eg:<br> var name = ‘Your name is ${first} ${last}’</p>
+<li><p>字符串模板表达式: 字符串拼接的一种简洁好用的方法</p>
+</li>
+</ul>
+<ol>
+<li>语法：<code>字符串 ${要替换变量}</code>  ////<u>是两个撇号，不是引号</u>;<blockquote>
+<p>${} :用来表示变量：<br>eg:<br>var name =  ` Your name is ${first} ${last} `</p>
 </blockquote>
 </li>
+</ol>
+<ul>
 <li>解构赋值：<ul>
 <li>定义：允许你使用类似数组或对象字面量的语法将数组和对象的属性赋给各种变量</li>
 <li>语法：[ variable1, variable2, …, variableN ] = array;</li>
@@ -392,7 +397,28 @@
 <p>这将为variable1到variableN的变量赋予数组中相应元素项的值。如果你想在赋值的同时声明变量，可在赋值语句前加入var、let或const关键字</p>
 </blockquote>
 <pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">eg:</div><div class="line"><span class="number">1.</span></div><div class="line">  <span class="keyword">var</span> first = someArray[<span class="number">0</span>];</div><div class="line">  <span class="keyword">var</span> second = someArray[<span class="number">1</span>];</div><div class="line">  <span class="keyword">var</span> third = someArray[<span class="number">2</span>];</div><div class="line">  等价于：</div><div class="line">  <span class="keyword">var</span> [first, second, third] = someArray;／／／解构赋值写法；</div><div class="line"><span class="number">2.</span><span class="keyword">var</span> [ variable1, variable2, ..., variableN ] = array;</div><div class="line">  <span class="keyword">let</span> [ variable1, variable2, ..., variableN ] = array;</div><div class="line">  <span class="keyword">const</span> [ variable1, variable2, ..., variableN ] = array;</div></pre></td></tr></table></figure>
-</code></pre><p>-</p>
+</code></pre><ul>
+<li>增强的对象字面将；</li>
+</ul>
+<ol>
+<li>对象方法的简写：{方法名(){}};<br>eg：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj= &#123;</div><div class="line">  Hellow()&#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="string">'你好啊！'</span>)：</div><div class="line">  &#125;,</div><div class="line">  age()&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'你多大了'</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125; <span class="comment">////如上对象有两个方法：Helllow ,age;</span></div><div class="line">obj.Hellow(); <span class="comment">///输出‘你好啊’</span></div></pre></td></tr></table></figure>
+<ol>
+<li><p>对象字面量的简写：<br>eg:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> type = <span class="string">'rock'</span>;</div><div class="line"><span class="keyword">var</span> heat = <span class="string">'50%'</span>;</div><div class="line"><span class="keyword">var</span> music = &#123;</div><div class="line">  type,</div><div class="line">  heat</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(music);  <span class="comment">// Object &#123;type: "rock", heat: "50%"&#125;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>解构函数的参数；将函数的对象参数直接解构成变量</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMusic</span>(<span class="params">&#123; type, heat &#125;</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(type, heat);</div><div class="line">&#125;</div><div class="line">getMusic(&#123; <span class="attr">type</span>: <span class="string">'rock'</span>, <span class="attr">heat</span>: <span class="string">'80%'</span>&#125;); <span class="comment">// rock 80%</span></div></pre></td></tr></table></figure>
+<ul>
+<li>箭头函数：</li>
+</ul>
+<ol>
+<li>语法：()=&gt;{} ;//标准形式；</li>
+<li>特点：不绑定自己的 this，arguments，super或 new.target<br><u>拿this来说箭头函数的中的this是指向其直接父级左右域的</u></li>
+</ol>
 
       
     </div>
