@@ -400,6 +400,13 @@
 <li>除过自定义模块引入都使用：var 变量名 = require(‘模块名’);<br>////注意模块名是使用npm安装时用的名字，也是package.json中的名字；</li>
 <li>自定义模块的引入：var 变量名 = require(‘模块路径’);<br>/// 自定义模块引入需要写模块路径；</li>
 </ul>
+<h3 id="模块的加载规则："><a href="#模块的加载规则：" class="headerlink" title="模块的加载规则："></a>模块的加载规则：</h3><ul>
+<li><p>用户模块：<br>eg: var md = require(‘index’);<br>查找规则：先找index-&gt;index.js-&gt;index.json-&gt;index.node</p>
+</li>
+<li><p>第三方模块：</p>
+</li>
+</ul>
+<p>// 1. node首先，查看项目根目录中有没有 <code>node_modules</code> 文件夹<br>// 2. 查找 <code>node_modules</code> 文件夹中，有没有和第三方模块名称一致的文件夹<br>// 3. 在模块对应的文件夹中，查找有没有 <code>package.json</code> 这个文件<br>// 4. 在 <code>package.json</code> 文件中，查找有没有 <code>main</code> 属性<br>// 5. 如果有 <code>main</code> 属性，并且 <code>main</code> 属性指向的路径存在，那么就尝试加载这个路径指定的文件！<br>// 6. 如果 <code>package.json</code> 文件中，没有 <code>main</code> 属性，或者 <code>main</code> 属性指向的路径不存在，或者没有<code>package.json</code> 文件， 那么，Node尝试加载 模块根目录中 <code>index</code> 相关文件：<code>index.js</code> -&gt; <code>index.json</code> -&gt; <code>index.node</code><br>// 7. 如果在<code>node_modules</code>文件夹中，找不到对应的模块文件夹，或者在项目根目录中根本没有<code>node_modules</code>文件夹，则向上一层文件夹中去查找，查找规则同上！<br>// 8. 如果上一层目录中也没有查找到，则再向上翻一层去查找，直到找到当前项目所在的盘符根目录为止！<br>// 9. 如果找到了盘符根目录还找不到，则报错：<code>cannot find module ***</code></p>
 <h2 id="核心模块"><a href="#核心模块" class="headerlink" title="核心模块"></a>核心模块</h2><h3 id="fs"><a href="#fs" class="headerlink" title="fs"></a>fs</h3><ul>
 <li>作用：操作文件</li>
 <li>导入：var fs = require(‘fs’); ///导入fs核心模块；</li>
@@ -428,13 +435,26 @@
 </li>
 </ul>
 <ul>
-<li><p><u>注意：使用者两种写入的方法写入内容时，如果要追加内容的文件不存在，不会报错</u></p>
-</li>
-<li><p>模块路径问题：<br>使用fs模块操作文件时：./的含义并不是当前文件路径；而是打开命令行的路径；所以如果使用./会从命令行所在的目录开始查找；</p>
-</li>
+<li><u>注意：使用者两种写入的方法写入内容时，如果要追加内容的文件不存在，不会报错</u></li>
 </ul>
 </li>
+<li><p>fs.readdir(‘要读取的目录’,callback) ：对去指定目录下面的所有文件名称；</p>
+<ul>
+<li>有两个参数：</li>
+<li>回调函数在读取完成后执行，有两个参数，第一个为errror,第二个为读取的结果：所有文件名</li>
+</ul>
+</li>
+<li>fs.stat(‘文件路径’,callback)：获取指定文件的详细信息；<ul>
+<li>有两个参数：</li>
+<li>callback 有两个参数；第一个error，第二个为一个对象，存放着文件的详细信息；</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>模块路径问题：<br> 使用fs模块操作文件时：./的含义并不是当前文件路径；而是打开命令行的路径；所以如果使用./会从命令行所在的目录开始查找；<ul>
 <li>为解决如上./路径问题,node中提供了一个关键字 ：_<em>dirname  //注意是两个 </em> ;</li>
+</ul>
+</li>
 </ul>
 <p><u>在使用fs模块时，涉及到路径拼接时都要使用__dirname </u></p>
 <h3 id="http模块；"><a href="#http模块；" class="headerlink" title="http模块；"></a>http模块；</h3><ul>
@@ -459,9 +479,19 @@
 </li>
 <li><p>作用：解决中文乱码问题；</p>
 </li>
-<li>从定向</li>
+<li>从定向在响应头中写入如下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   res.redirect = function(url)&#123;</div><div class="line">   this.writeHeader(302, &#123;&apos;Location&apos;:url&#125;);</div><div class="line">   this.end();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
+<li><p>第三方模块：moment  ////日期格式化</p>
+<ul>
+<li>使用方法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var time = moment(要格式化的时间).format(&apos;YYYY-MM-DD HH-mm&apos;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="用户自定义模块借口暴露；"><a href="#用户自定义模块借口暴露；" class="headerlink" title="用户自定义模块借口暴露；"></a>用户自定义模块借口暴露；</h3><ul>
+<li>暴露方式：exports/module.exports = obj;</li>
 </ul>
 <h3 id="node中Javascript"><a href="#node中Javascript" class="headerlink" title="node中Javascript"></a>node中Javascript</h3><ul>
 <li><p>组成：ECMAscript+核心API+其他第三方API</p>
@@ -480,32 +510,22 @@
 </ul>
 </li>
 </ul>
-<h1 id="核心模块（API模块）"><a href="#核心模块（API模块）" class="headerlink" title="核心模块（API模块）"></a>核心模块（API模块）</h1><h3 id="fs-1"><a href="#fs-1" class="headerlink" title="fs"></a>fs</h3><ul>
-<li>文件读取模块；</li>
-<li>调用：var fs = require(‘fs’);</li>
-<li>文件读取： fs.readFile(),有三个参数，<ul>
-<li>第一个参数为：path，指定要读取的的文件路径；</li>
-<li>options（可选），指定文件编码；</li>
-</ul>
-</li>
-</ul>
-<h3 id="文件的写入和追加；"><a href="#文件的写入和追加；" class="headerlink" title="文件的写入和追加；"></a>文件的写入和追加；</h3><ul>
-<li>需调用node的核心模块，require（’fs’）;<br>-</li>
-</ul>
-<ul>
-<li>在写入的字符串中加/n表示换行；</li>
-<li>文件追加时如果，要追加的文件不存在不会报错，会先创建文件在追加；</li>
-<li>文件写入时如果要写入的文件不存在会直接报错，</li>
-</ul>
-<h3 id="fs模块中路径"><a href="#fs模块中路径" class="headerlink" title="fs模块中路径"></a>fs模块中路径</h3><ul>
-<li><p><em> </em> dirname ():获取当前代码所在文件的路径 ( <em> </em>之间不能有空格)；</p>
-</li>
-<li><p>在代码中使用./ ：命令窗口打开的路径</p>
-</li>
-</ul>
 <h3 id="页面中静态资源路径"><a href="#页面中静态资源路径" class="headerlink" title="页面中静态资源路径"></a>页面中静态资源路径</h3><ul>
 <li>页面中静态资源的路径属于二次请求，浏览器会进行拼接处理后；</li>
 <li>不能以./或者../开始</li>
+</ul>
+<h3 id="art-template"><a href="#art-template" class="headerlink" title="art-template();"></a>art-template();</h3><ul>
+<li><p>客户端渲染：</p>
+<ul>
+<li>所引入的文件：template-web.js</li>
+</ul>
+</li>
+<li><p>服务端渲染：</p>
+<ul>
+<li>所引入的文件：index.js</li>
+<li>常用方法：var str = 引入的模块对象(‘模板路径’,数据) ///注意数据可以是数组或者对象；会返回一个渲染好的字符串；</li>
+</ul>
+</li>
 </ul>
 <h3 id="环境变量-path"><a href="#环境变量-path" class="headerlink" title="环境变量 path"></a>环境变量 path</h3><ul>
 <li>可以让我们通过命令行快速启动应用；</li>
@@ -597,235 +617,6 @@
 <ul>
 <li>let:用它定义的变量不能预解析；同时会产生块级作用域({}可以分割作用域)；</li>
 <li>const 定义常量，定义之后不能进行更改，同时也会产生块级作用域；<br>-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/26/ajax补充/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/26/ajax补充/" itemprop="url">ajax补充</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-26T16:55:33+08:00">
-                2016-07-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <style>
- div{
-    padding:20px;
-  }
-
-  *{
-
-   font-family:'楷体';
-   font-size:16px;
-  }
-  h3,h1,h2{
-   color:yellowgreen;
-   font:30px '隶书';
-  }
-  u{
-
-   color:red;
-   font-size:14px;
-
-  }
-  ol{
-   font-weight:900; 
-  }
-
-
-</style>
-
-<h3 id="HTTP协议："><a href="#HTTP协议：" class="headerlink" title="HTTP协议："></a>HTTP协议：</h3><ul>
-<li>定义：超文本传输协议，网站是基于HTTP协议的。（例如：网站的图片，css,js等都是通过http协议进行传输的）</li>
-<li><p>作用：对从客户端到服务器的请求和从服务器到客户端的响应进行了约束和规范；</p>
-</li>
-<li><p>构成：主要由请求报文和响应报文构成：</p>
-</li>
-</ul>
-<p>###请求/请求报文：</p>
-<ul>
-<li>请求行：请求方式，url地址；</li>
-<li>请求头：</li>
-<li>请求主体：</li>
-</ul>
-<h3 id="响应-响应报文"><a href="#响应-响应报文" class="headerlink" title="响应/响应报文"></a>响应/响应报文</h3><ul>
-<li>状态行；协议版本号,状态码，状态信息；</li>
-<li>响应头；</li>
-<li>响应主体；</li>
-</ul>
-<h3 id="ajax（Asynchronous-Javascript-And-XML）"><a href="#ajax（Asynchronous-Javascript-And-XML）" class="headerlink" title="ajax（Asynchronous Javascript And XML）"></a>ajax（Asynchronous Javascript And XML）</h3><ul>
-<li>ajax不是一门新的语言，而是对现有技术的综合利用；</li>
-<li><p>本质：实在http协议的基础上以异步的方式与服务器进行通信；</p>
-</li>
-<li><p>利用浏览器内建的异步对象XMLHttpRequest来完成；</p>
-</li>
-</ul>
-<h3 id="XMLHttpRequest"><a href="#XMLHttpRequest" class="headerlink" title="XMLHttpRequest"></a>XMLHttpRequest</h3><ul>
-<li>浏览器内建的异步对象，用于在后台与服务其通信，由此来实现对网页的局部更新；</li>
-<li>本质基于http协议实现通信，所以其书写规则也满足http协议的要求；</li>
-<li><p>请求：</p>
-<ul>
-<li><p>get方式：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">        //创异步对象；</div><div class="line">var xml = new XMLHttpRequest();</div><div class="line">//设请求行；</div><div class="line">xml.open(&apos;get&apos;, &apos;1.php?age=18&amp;name=张三&apos;);</div><div class="line">////设请求头；</div><div class="line">xml.setRequestHeader(&apos;header&apos;,&apos;123&apos;);</div><div class="line">///回函数；</div><div class="line">xml.onload = function () &#123;</div><div class="line">  console.log(xml.responseText);</div><div class="line">&#125;</div><div class="line">//请求主体；</div><div class="line">xml.send(null);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<p><u>get方式时可以不用设置请求头：不写设置语句或者随意写一个键值对，但不能空着，不然会报错的</u></p>
-<p><hr></p>
-<pre><code>- post方式：
-
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">///创异步对象；</div><div class="line">var obj = new XMLHttpRequest();</div><div class="line">////设请行；</div><div class="line">obj.open(&apos;post&apos;,&apos;1.php&apos;);</div><div class="line"></div><div class="line">/////设请求头；</div><div class="line">obj.setRequestHeader(&apos;Content-Type&apos;,&apos;application/x-www-form-urlencoded&apos;);</div><div class="line"></div><div class="line">//回调函数；</div><div class="line">obj.onload = function()&#123;</div><div class="line">    console.log(obj.responseText);</div><div class="line">&#125;</div><div class="line">///请求主体；</div><div class="line">obj.send(&apos;name=张三&amp;age=28&amp;XB=男&apos;);</div></pre></td></tr></table></figure>
-</code></pre><h3 id="onreadystatechange"><a href="#onreadystatechange" class="headerlink" title="onreadystatechange"></a>onreadystatechange</h3><ul>
-<li>是javascript的事件的一种；</li>
-<li>作用：监听XMLHttpRequest的状态；</li>
-</ul>
-<hr>
-<p>1.获取状态行：</p>
-<pre><code>- xhr.status //状态码；
-- xhr.statusText //状态信息；
-</code></pre><p>2.获取响应头：</p>
-<pre><code>- xhr.getResponseHeader(&apos;Content-Type&apos;);//获取指定的头信息；
-- xhr.getAllResponseHeader();//获取所有的响应头信息；
-</code></pre><p>3.响应主体：</p>
-<pre><code>- xhr.responseText;
-- xhr.responseXML;
-</code></pre><ul>
-<li>eg:（检测XMLHttpRequest,并设置给选中的标签中设置内容）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">xhr.onreadystatechange = function()&#123;</div><div class="line">    if(xhr.readyState == 4 &amp;&amp; xhr.status == 200)&#123;</div><div class="line">      var result = document.querySelector(&apos;.result&apos;);</div><div class="line">      result.innerHTML = xhr.responseText;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">xhr.readyState = 4时，DONE响应完成；</div></pre></td></tr></table></figure>
-<h3 id="DOMContentLoad和window-onload："><a href="#DOMContentLoad和window-onload：" class="headerlink" title="DOMContentLoad和window.onload："></a>DOMContentLoad和window.onload：</h3><ul>
-<li>两者都是原生js的属性；</li>
-<li>区别：DOMContentLoad事件是在DOM加载完毕，页面内容（如图片加载完毕之前执行。），与jquery中的入口函数相同。而window.onload会在页面资料全部加载完毕后才会执行。<br><u>总结：DOMContentLoad是在DOM渲染完毕，页面DOM元素可使用，触发，window.onload是在DOM渲染完毕，并且所有外部资源也加载完毕才触发；</u></li>
-</ul>
-<h3 id="入口函数；"><a href="#入口函数；" class="headerlink" title="入口函数；"></a>入口函数；</h3><ul>
-<li><p>原生js入口函数：</p>
-<ul>
-<li>window.onload;</li>
-</ul>
-</li>
-<li><p>jquery入口函数：：</p>
-<ul>
-<li>$(function(){});</li>
-<li>$(document).read(function(){});</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>区别：</li>
-</ul>
-<h3 id="DOM文档加载步骤："><a href="#DOM文档加载步骤：" class="headerlink" title="DOM文档加载步骤："></a>DOM文档加载步骤：</h3><p>1.解析HTML结构；<br>2.加载外部脚本和样式文件；<br>3.解析并执行脚本代码；<br>4.执行$(function(){})内对应的diamante；<br>5.加载图片等二进制资源；<br>6.页面加载完毕，执行window.onload;</p>
-<h3 id="终止ajax请求的方法；"><a href="#终止ajax请求的方法；" class="headerlink" title="终止ajax请求的方法；"></a>终止ajax请求的方法；</h3><ul>
-<li>创建XMLHttpRequest对象，创建的对象有一个abort()方法，可以通过该方法来终止ajax请求；</li>
-</ul>
-<p>eg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">发起HTTP GET请求获取指定URL的内容</div><div class="line">如果响应成功到达，则传入responseText给回调函数</div><div class="line">如果响应在timeout时间内没有到达，则中止请求</div><div class="line">浏览器可能会在abort()后出啊发readystatechange</div><div class="line">如果部分请求结果到达，甚至可能设置status属性</div><div class="line">所有需要设置一个标记，当部分且超时的响应到达时不会调用回调函数</div><div class="line">如果使用load(当请求完成时触发)事件就没有这个风险</div><div class="line">*/</div><div class="line">function(url,timeout,callback)&#123;</div><div class="line">    var request = new XMLHttpRequest();</div><div class="line">    var time = false;//是否超时</div><div class="line">    var timer = setTimeout(function()&#123;</div><div class="line">        timeout = true;</div><div class="line">        request.abort();//请求中止</div><div class="line">    &#125;,timeout);</div><div class="line">    request.open(&quot;GET&quot;,url);</div><div class="line">    request.onreadystatechange = function()&#123;</div><div class="line">        if(request.readyState !==4) continue;//忽略未完成的请求</div><div class="line">        if(timeout) return;//忽略中止请求</div><div class="line">        clearTimeout(timer);//取消等待的超时</div><div class="line">        if(request.status === 200)</div><div class="line">            callback(request.responseText);</div><div class="line">    &#125;</div><div class="line">    request.send(null);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><u>jquery中的调用$.ajax和$.get,$.post都会创建一个加强版的异步对象XMLHtppReqest</u></p>
-<h3 id="请求方式："><a href="#请求方式：" class="headerlink" title="请求方式："></a>请求方式：</h3><ul>
-<li>get</li>
-<li>post</li>
-<li>put</li>
-<li>delete;</li>
 </ul>
 
           
@@ -1441,7 +1232,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
