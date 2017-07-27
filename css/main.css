@@ -478,7 +478,7 @@ pre,
   font-size: 13px;
   color: #4d4d4c;
   background: #f7f7f7;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 pre,
 code {
@@ -1678,7 +1678,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #5eff1a;
+  background: #f7ff1c;
 }
 .links-of-blogroll {
   font-size: 13px;
