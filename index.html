@@ -373,262 +373,18 @@
 
       
         
-          
-            <style>
+          <style>
   u{
    color:red;
   }
 </style>
-
-<h3 id="npm（包管理工具）"><a href="#npm（包管理工具）" class="headerlink" title="npm（包管理工具）"></a>npm（包管理工具）</h3><ul>
-<li>npm init -y  初始化，生成一个包管理文件（package.json:用于依赖文件的赋值）;</li>
-<li>npm install  报名@版本号（版本号可选） –save或者（–save/dev）   ///install 可以简写成i<ul>
-<li>–save 表示将包安装到部署依赖（开发和项目上线都需要依赖的包），可以简写成 -S</li>
-<li>–save-dev表示安装到开发依赖（只在项目开发中依赖），可以简写成 -D</li>
-</ul>
-</li>
-<li><p>npm uninstall 包名 –save/–save-dev //删除包,同时删除package.json中的记录；</p>
-</li>
-<li><p>想要通过package.json来自动安装包 ，在其所对的文件夹中执行对应指令：npm install</p>
-</li>
-</ul>
-<h3 id="EMAscript"><a href="#EMAscript" class="headerlink" title="EMAscript"></a>EMAscript</h3><ul>
-<li>只规定了如何进行分支判断，如何定义变量，如何定义方法；</li>
-<li>只是一个规范，不是编程语言；</li>
-</ul>
-<h3 id="ES6新语法特性；"><a href="#ES6新语法特性；" class="headerlink" title="ES6新语法特性；"></a>ES6新语法特性；</h3><h1 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a>node.js</h1><h2 id="相关定义："><a href="#相关定义：" class="headerlink" title="相关定义："></a>相关定义：</h2><ul>
-<li>运行环境：基于Chrome v8引擎的javascript (REPL)</li>
-<li>使用了事件驱动、非阻塞式I/O的模型，使其轻量而又高效；<ul>
-<li>事件驱动： 当触发某个事件的时候，执行事件中指定的代码；</li>
-<li>非阻塞式I/O的模型：采用非阻塞的操作，能够提高处理效率</li>
-</ul>
-</li>
-<li><u>总结：node.js就是一个javascript的服务端运行唤醒，为javascript提供了服务端编程能力</u></li>
-</ul>
-<h2 id="模块的引入"><a href="#模块的引入" class="headerlink" title="模块的引入"></a>模块的引入</h2><ul>
-<li>除过自定义模块引入都使用：var 变量名 = require(‘模块名’);<br>////注意模块名是使用npm安装时用的名字，也是package.json中的名字；</li>
-<li>自定义模块的引入：var 变量名 = require(‘模块路径’);<br>/// 自定义模块引入需要写模块路径；</li>
-</ul>
-<h3 id="模块的加载规则："><a href="#模块的加载规则：" class="headerlink" title="模块的加载规则："></a>模块的加载规则：</h3><ul>
-<li><p>用户模块：<br>eg: var md = require(‘index’);<br>查找规则：先找index-&gt;index.js-&gt;index.json-&gt;index.node</p>
-</li>
-<li><p>第三方模块：</p>
-</li>
-</ul>
-<p>// 1. node首先，查看项目根目录中有没有 <code>node_modules</code> 文件夹<br>// 2. 查找 <code>node_modules</code> 文件夹中，有没有和第三方模块名称一致的文件夹<br>// 3. 在模块对应的文件夹中，查找有没有 <code>package.json</code> 这个文件<br>// 4. 在 <code>package.json</code> 文件中，查找有没有 <code>main</code> 属性<br>// 5. 如果有 <code>main</code> 属性，并且 <code>main</code> 属性指向的路径存在，那么就尝试加载这个路径指定的文件！<br>// 6. 如果 <code>package.json</code> 文件中，没有 <code>main</code> 属性，或者 <code>main</code> 属性指向的路径不存在，或者没有<code>package.json</code> 文件， 那么，Node尝试加载 模块根目录中 <code>index</code> 相关文件：<code>index.js</code> -&gt; <code>index.json</code> -&gt; <code>index.node</code><br>// 7. 如果在<code>node_modules</code>文件夹中，找不到对应的模块文件夹，或者在项目根目录中根本没有<code>node_modules</code>文件夹，则向上一层文件夹中去查找，查找规则同上！<br>// 8. 如果上一层目录中也没有查找到，则再向上翻一层去查找，直到找到当前项目所在的盘符根目录为止！<br>// 9. 如果找到了盘符根目录还找不到，则报错：<code>cannot find module ***</code></p>
-<h2 id="核心模块"><a href="#核心模块" class="headerlink" title="核心模块"></a>核心模块</h2><h3 id="fs"><a href="#fs" class="headerlink" title="fs"></a>fs</h3><ul>
-<li>作用：操作文件</li>
-<li>导入：var fs = require(‘fs’); ///导入fs核心模块；</li>
-<li><p>读取文件内容：fs.readFile(‘path’,[字符编码],callback);</p>
-<ul>
-<li>第一个参数为要读取的文件路径；</li>
-<li>第二个参数为字符编码可选；</li>
-<li>第三个参数为回调函数：回调函数有两个参数:（error,data） ///当文件读取完成后执行回调函数；如果读取失败error是一个对象,data为undefined ,反之error为null,data为读取的内容；</li>
-<li><p>eg</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fs.readFile(&apos;./files/1.txt&apos;, &apos;utf-8&apos;, (err, dataStr) =&gt; &#123;</div><div class="line">  if (err) return console.log(err.message);</div><div class="line">  console.log(dataStr);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>文件的写入：fs.writeFile(path,content,字符编码/可选,callback);</p>
-<ul>
-<li>四个参数：</li>
-<li><p>callback：当文件写入完成后执行，参数只有一个error，如果写入失败error是一个对象，反之error为null</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fs.writeFile(&apos;./files/2.txt&apos;, &apos;QQQ&apos;, (err) =&gt; &#123;</div><div class="line">     if (err) throw err;</div><div class="line">     console.log(&apos;写入OK&apos;);</div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>追加内容：fs.appendFile(path,content,字符编码/可选,callback);</p>
-<ul>
-<li>参数也有四个：</li>
-<li>callback在文件写入完成后执行；参数只有一个，error同writeFile()一样；<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fs.appendFile(&apos;./files/3.html&apos;, &apos;&lt;h1&gt;首页&lt;/h1&gt;&apos;, (err) =&gt; &#123;</div><div class="line">    if (err) throw err;</div><div class="line">    console.log(&apos;OK&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><u>注意：使用者两种写入的方法写入内容时，如果要追加内容的文件不存在，不会报错</u></li>
-</ul>
-</li>
-<li><p>fs.readdir(‘要读取的目录’,callback) ：对去指定目录下面的所有文件名称；</p>
-<ul>
-<li>有两个参数：</li>
-<li>回调函数在读取完成后执行，有两个参数，第一个为errror,第二个为读取的结果：所有文件名</li>
-</ul>
-</li>
-<li>fs.stat(‘文件路径’,callback)：获取指定文件的详细信息；<ul>
-<li>有两个参数：</li>
-<li>callback 有两个参数；第一个error，第二个为一个对象，存放着文件的详细信息；</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>模块路径问题：<br> 使用fs模块操作文件时：./的含义并不是当前文件路径；而是打开命令行的路径；所以如果使用./会从命令行所在的目录开始查找；<ul>
-<li>为解决如上./路径问题,node中提供了一个关键字 ：_<em>dirname  //注意是两个 </em> ;</li>
-</ul>
-</li>
-</ul>
-<p><u>在使用fs模块时，涉及到路径拼接时都要使用__dirname </u></p>
-<h3 id="http模块；"><a href="#http模块；" class="headerlink" title="http模块；"></a>http模块；</h3><ul>
-<li>作用：创建一个web服务器；</li>
-<li>导入：var http = require(‘http’);</li>
-<li>eg：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">var http = require(&apos;http&apos;);</div><div class="line"></div><div class="line">// 2. 创建一个Web服务器</div><div class="line">var server = http.createServer();</div><div class="line"></div><div class="line">// 3. 先指定服务器要运行的端口号，再启动服务器</div><div class="line">server.listen(3000, () =&gt; &#123;</div><div class="line">  // 当服务器启动Ok之后，会调用回调函数</div><div class="line">  console.log(&apos;Server running at http://127.0.0.1:3000&apos;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 4. 监听客户端的请求，并处理请求，最后把处理的结果通过网络返回给客户端</div><div class="line"></div><div class="line">// server.on(&apos;request&apos;) //为服务器绑定请求事件，每当有新的客户端请求我们服务器的时候，都会触发这个事件</div><div class="line">// req 是 request 的缩写：每当有请求过来，都能拿到这次请求的 Request 对象；通过 request 对象，能够拿到客户端提交过来的数据、报文头、报文体；</div><div class="line">// res 是 response 的缩写：服务器处理完这次请求之后，可以通过 response 对象，把处理的结果返回给浏览器</div><div class="line"></div><div class="line">server.on(&apos;request&apos;, (req, res) =&gt; &#123;</div><div class="line">  console.log(&apos;有新的请求过来了！！！&apos;);</div><div class="line">    // 通过 response 对象的 write 方法，向客户端写入数据</div><div class="line">  res.write(&apos;OK&apos;);</div><div class="line">  res.write(&apos;123&apos;);</div><div class="line">  res.write(&apos;456&apos;);</div><div class="line">  ///写入完成需要调用res的end()方法告诉服务器已经发送完毕，客户端可以显示了；</div><div class="line">  res.end();</div></pre></td></tr></table></figure>
-<ul>
-<li>res.end();<ul>
-<li>如果一次就将将数据发送完了，也可以直接将响应的内容作为该方法的参数返回；</li>
-<li>该方法的参数只能是字符串；</li>
-</ul>
-</li>
-<li><p>res.writeHeader(); 写入响应头：</p>
-<ul>
-<li><p>格式：</p>
-<blockquote>
-<p>response.writeHead(statusCode, [reasonPhrase], {键：值})<br>eg:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">response.writeHead(200, &#123;</div><div class="line">    &apos;Content-Length&apos;: body.length,</div><div class="line">    &apos;Content-Type&apos;: &apos;text/plain; charset=utf-8&apos;   ////规定响应文件的类型；</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>作用：解决中文乱码问题；</p>
-</li>
-<li>从定向在响应头中写入如下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   res.redirect = function(url)&#123;</div><div class="line">   this.writeHeader(302, &#123;&apos;Location&apos;:url&#125;);</div><div class="line">   this.end();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>第三方模块：moment  ////日期格式化</p>
-<ul>
-<li>使用方法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var time = moment(要格式化的时间).format(&apos;YYYY-MM-DD HH-mm&apos;);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="用户自定义模块借口暴露；"><a href="#用户自定义模块借口暴露；" class="headerlink" title="用户自定义模块借口暴露；"></a>用户自定义模块借口暴露；</h3><ul>
-<li>暴露方式：exports/module.exports = obj;</li>
-</ul>
-<h3 id="node中Javascript"><a href="#node中Javascript" class="headerlink" title="node中Javascript"></a>node中Javascript</h3><ul>
-<li><p>组成：ECMAscript+核心API+其他第三方API</p>
-</li>
-<li><p>运行环境:REPL</p>
-</li>
-<li><p>只能运行js自带的原生语法（alert不能识别）；</p>
-</li>
-<li><p>readFile(‘文件路径’，’文件路径’,function(error,data){</p>
-<p> })  ////当文件读取成功是error为null;</p>
-</li>
-<li><p>函数定义</p>
-</li>
-<li>前端：箭头函数：（）=&gt;{}  ///():参数列表；{}：函数体；<ul>
-<li>箭头函数中的this始终指向它外部作用域的的this;</li>
-</ul>
-</li>
-</ul>
-<h3 id="页面中静态资源路径"><a href="#页面中静态资源路径" class="headerlink" title="页面中静态资源路径"></a>页面中静态资源路径</h3><ul>
-<li>页面中静态资源的路径属于二次请求，浏览器会进行拼接处理后；</li>
-<li>不能以./或者../开始</li>
-</ul>
-<h3 id="art-template"><a href="#art-template" class="headerlink" title="art-template();"></a>art-template();</h3><ul>
-<li><p>客户端渲染：</p>
-<ul>
-<li>所引入的文件：template-web.js</li>
-</ul>
-</li>
-<li><p>服务端渲染：</p>
-<ul>
-<li>所引入的文件：index.js</li>
-<li>常用方法：var str = 引入的模块对象(‘模板路径’,数据) ///注意数据可以是数组或者对象；会返回一个渲染好的字符串；</li>
-</ul>
-</li>
-</ul>
-<h3 id="环境变量-path"><a href="#环境变量-path" class="headerlink" title="环境变量 path"></a>环境变量 path</h3><ul>
-<li>可以让我们通过命令行快速启动应用；</li>
-<li>path变量查找规则，现在当前目录中查找，如果当前目录里面没有，就去系统环境变量path变量中依次查找对应的文件夹，如果里面也有对应的exe程序则运行，否则直接报错；</li>
-</ul>
-<h3 id="小点集合"><a href="#小点集合" class="headerlink" title="小点集合"></a>小点集合</h3><ul>
-<li>谷歌2008年创造出了世界解析js最快的引擎， chrome  v8；</li>
-<li><p>javascript是单线程语言，javascript语言全部运行在主线程上；</p>
-</li>
-<li><p>多线程：程序员能主动开启子线程的语言就叫做多线程语言；</p>
-</li>
-<li><p>异步方式，例如异步文件读写不是主程序来完成的，而是主程序开启的子程序来完成的，主程序会继续进行后续的操作；</p>
-</li>
-<li><p>只有用户模块，是通过路径+标识符来引用，其他模块都是直接通过标识符引用；</p>
-</li>
-</ul>
-<ul>
-<li>nodejs中require加载模块，优先从缓存中加载<ul>
-<li>好处：提高程序的运行速度；</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>node的模块化基于comenjs，</li>
-<li>commonjs是同步加载的规范，不适用与浏览器端，因为浏览器端不是本地加载的（客户端采用的是本地加载）</li>
-<li><p>AMD,CMD(规范的区别)；</p>
-</li>
-<li><p>需要对seo友好的页面区域一般采用服务器端渲染，反之采用客户端渲染；</p>
-</li>
-<li><p>nodejs中回调函数的第一个参数都是error对象；</p>
-</li>
-<li><p>rep.end();  ////()中可以放字符串,二进制；</p>
-</li>
-<li><p>const 用来定义常量，（例如模块对象）；</p>
-</li>
-<li><p>对象静态资源的请求后台必须通过fs模块来读取；</p>
-</li>
-<li><p>获取请求的方式：req.method;</p>
-</li>
-</ul>
-<p>###第三方模块，核心模块的调用：</p>
-<ul>
-<li>第三方模块调用在第三方package.json中查看main的路径指向的是哪个文件，就引用哪个文件；</li>
-<li>在自己的package.json中查看安装的第三方模块的名字，直接require该名字；</li>
-</ul>
-<p>###node中实现模块化主要是通过，module ,require ,exports</p>
-<h3 id="项目构建"><a href="#项目构建" class="headerlink" title="项目构建"></a>项目构建</h3><ul>
-<li>入口程序:一般放在根目录；</li>
-</ul>
-<p>###转译符</p>
-<ul>
-<li>/</li>
-</ul>
-<p>###后台的mvc模式</p>
-<ul>
-<li>c:业务逻辑</li>
-<li>m:数据的增删改查；</li>
-<li>v:前端页面；</li>
-</ul>
-<p>是针对整个项目而言的；而前端的mvc只针对页面而言；</p>
-<p>###网页上的请求</p>
-<ul>
-<li>分为两种同步和异步，</li>
-<li>同步请求会直接渲染在页面上，</li>
-<li>异步不会，如ajax请求，ajax的回调函数会先获取数据，进行处理；</li>
-</ul>
-<p>###向请求的客户端发送响应头</p>
-<p>###获取前台请求数据；</p>
-<h3 id="nodejs中的事件绑定："><a href="#nodejs中的事件绑定：" class="headerlink" title="nodejs中的事件绑定："></a>nodejs中的事件绑定：</h3><ul>
-<li>addListener</li>
-<li>on(‘事件类型’,function(){});</li>
-</ul>
-<p><u>不能用addEventListener</u></p>
-<p>###浏览器主动发起的请求都是get，</p>
-<p>###ES6javascript新语法特性</p>
-<ul>
-<li>结构赋值</li>
-<li>模板字符串；</li>
-<li><p>array.some(function(val ,index){</p>
-<p>  return true ///当执行该语句时会终止循环；</p>
-</li>
-</ul>
-<pre><code>})  ////遍历数组，找到满足要求项目，然后return true终止循环；
-</code></pre><p>###核心模块url</p>
-<ul>
-<li>作用：可以通过它来解析获取获取客户端每次请求的ulr地址；<br>-</li>
-</ul>
-<p>###const let</p>
-<ul>
-<li>let:用它定义的变量不能预解析；同时会产生块级作用域({}可以分割作用域)；</li>
-<li>const 定义常量，定义之后不能进行更改，同时也会产生块级作用域；<br>-</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/26/node-js/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -759,34 +515,12 @@
 
       
         
-          <p><style><br>  u{<br>  color:red;<br>  }</p>
-<p></style></p>
-<h3 id="第一天"><a href="#第一天" class="headerlink" title="第一天"></a>第一天</h3><p>1.<strong>基本数据类型与引用数据类型</strong></p>
-<ul>
-<li>基本数据类型：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">简单数据类型number,string,boolean,null,undefined</div></pre></td></tr></table></figure>
-<ul>
-<li>引用数据类型</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function,object,array</div></pre></td></tr></table></figure>
-<p>2.<strong>全局变量都是window的属性</strong></p>
-<ol>
-<li><strong>delete用来删除对象的某一属性</strong></li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">delete 属性值；</div></pre></td></tr></table></figure>
-<p>4.<strong>对象的属性可以是符合变量命名规则的任意值，所以数字也可以作为变量的属性</strong></p>
-<p>5.<strong>对象属性的访问方式</strong></p>
-<ul>
-<li>对象.属性          //该方法不能访问数字属性</li>
-<li>对象[属性的字符串]  //该方法最为强大</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注意：用【】的方式访问对象属性时，【】中写的是属性的字符串；</div></pre></td></tr></table></figure>
-<p>6.<strong>面向对象与面向过程的概念；</strong></p>
-<ul>
-<li>面向过程：凡事都亲自做；</li>
-<li>找别人帮忙做，没有可以做的人，就自己培养，培养好了再让他做，</li>
-<li>关系：面向对象离不开面向过程，可以将面向对象理解成是对面向过程的封装；
+          <style>
+  u{
+  color:red;
+  }
+
+</style>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2015/12/22/高级面向对象/#more" rel="contents">
