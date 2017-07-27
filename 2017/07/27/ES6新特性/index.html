@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="随笔心得">
 <meta property="og:description" content="u{  color:red;}h1&amp;gt;a:hover{  transition:all 1s;  transform:translateX(40px);}">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-27T08:13:10.665Z">
+<meta property="og:updated_time" content="2017-07-27T08:21:41.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6新特性">
 <meta name="twitter:description" content="u{  color:red;}h1&amp;gt;a:hover{  transition:all 1s;  transform:translateX(40px);}">
@@ -382,26 +382,17 @@
 <p>${} :用来表示变量：<br>eg:<br> var name = ‘Your name is ${first} ${last}’</p>
 </blockquote>
 </li>
-<li><p>解构赋值：</p>
-<ul>
+<li>解构赋值：<ul>
 <li>定义：允许你使用类似数组或对象字面量的语法将数组和对象的属性赋给各种变量</li>
-<li>语法：[ variable1, variable2, …, variableN ] = array;<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">这将为variable1到variableN的变量赋予数组中相应元素项的值。如果你想在赋值的同时声明变量，可在赋值语句前加入var、let或const关键字</div></pre></td></tr></table></figure>
+<li>语法：[ variable1, variable2, …, variableN ] = array;</li>
+</ul>
 </li>
 </ul>
 <blockquote>
-<p>eg:<br>  1.</p>
-<pre><code>var first = someArray[0];
-var second = someArray[1];
-var third = someArray[2];
-等价于：
-var [first, second, third] = someArray;／／／解构赋值写法；
-</code></pre><p>  2.var [ variable1, variable2, …, variableN ] = array;</p>
-<pre><code>let [ variable1, variable2, ..., variableN ] = array;
-const [ variable1, variable2, ..., variableN ] = array;
-</code></pre></blockquote>
-</li>
-</ul>
-<p>-</p>
+<p>这将为variable1到variableN的变量赋予数组中相应元素项的值。如果你想在赋值的同时声明变量，可在赋值语句前加入var、let或const关键字</p>
+</blockquote>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">eg:</div><div class="line">1.</div><div class="line">  var first = someArray[0];</div><div class="line">  var second = someArray[1];</div><div class="line">  var third = someArray[2];</div><div class="line">  等价于：</div><div class="line">  var [first, second, third] = someArray;／／／解构赋值写法；</div><div class="line">2.var [ variable1, variable2, ..., variableN ] = array;</div><div class="line">  let [ variable1, variable2, ..., variableN ] = array;</div><div class="line">  const [ variable1, variable2, ..., variableN ] = array;</div></pre></td></tr></table></figure>
+</code></pre><p>-</p>
 
       
     </div>
